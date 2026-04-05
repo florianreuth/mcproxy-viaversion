@@ -1,0 +1,6 @@
+{
+  "name": "ViaVersion",
+  "version": "${version}",
+  "mainClass": "com.viaversion.mcproxy.ProxyPlugin",
+  "authors": ["_MylesC", "creeper123123321", "Gerrygames", "kennytv", "Matsv", "EnZaXD", "RK_01"]
+}
