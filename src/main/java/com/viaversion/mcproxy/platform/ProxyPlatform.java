@@ -66,6 +66,19 @@ public final class ProxyPlatform implements ViaServerProxyPlatform<Player> {
     }
 
     @Override
+    public void sendMessage(final UserConnection connection, final String message) {
+        final UUID uuid = connection.getProtocolInfo().getUuid();
+        if (uuid == null) {
+            return;
+        }
+
+        final Player player = ProxyServer.getInstance().getPlayer(uuid);
+        if (player != null) {
+            player.sendMessage(message);
+        }
+    }
+
+    @Override
     public boolean kickPlayer(final UserConnection connection, final String message) {
         final UUID uuid = connection.getProtocolInfo().getUuid();
         if (uuid == null) {
@@ -77,6 +90,11 @@ public final class ProxyPlatform implements ViaServerProxyPlatform<Player> {
             player.disconnect(message);
         }
         return true;
+    }
+
+    @Override
+    public boolean hasPlugin(final String name) {
+        return ProxyServer.getInstance().getPluginManager().hasPlugin(name);
     }
 
     @Override

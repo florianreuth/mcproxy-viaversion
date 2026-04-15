@@ -10,6 +10,7 @@ setupProject()
 
 repositories {
     maven("https://repo.viaversion.com")
+    maven("https://libraries.minecraft.net")
     maven("https://jitpack.io/")
 }
 
@@ -19,7 +20,7 @@ dependencies {
     compileOnly("com.viaversion:viaversion-common:5.8.0")
     compileOnly("com.viaversion:viabackwards-common:5.8.0")
     compileOnly("com.viaversion:viarewind-common:4.0.15")
-    compileOnly("com.github.Outfluencer:mcproxy:d08d6a3eee")
+    compileOnly("com.github.Outfluencer:mcproxy:fec9c3328d")
     shade("net.lenni0451:Reflect:1.6.2")
 }
 
