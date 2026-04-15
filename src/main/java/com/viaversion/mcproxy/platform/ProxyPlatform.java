@@ -23,9 +23,15 @@ import com.viaversion.viaversion.api.configuration.ViaVersionConfig;
 import com.viaversion.viaversion.api.connection.UserConnection;
 import com.viaversion.viaversion.api.platform.ProtocolDetectorService;
 import com.viaversion.viaversion.api.platform.ViaServerProxyPlatform;
+import com.viaversion.viaversion.dump.PluginInfo;
+import com.viaversion.viaversion.libs.gson.JsonObject;
+import com.viaversion.viaversion.util.GsonUtil;
 import dev.outfluencer.mcproxy.api.ProxyServer;
 import dev.outfluencer.mcproxy.api.connection.Player;
+import dev.outfluencer.mcproxy.api.plugin.Plugin;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -95,6 +101,26 @@ public final class ProxyPlatform implements ViaServerProxyPlatform<Player> {
     @Override
     public boolean hasPlugin(final String name) {
         return ProxyServer.getInstance().getPluginManager().hasPlugin(name);
+    }
+
+    @Override
+    public JsonObject getDump() {
+        final JsonObject platformSpecific = new JsonObject();
+
+        final List<PluginInfo> plugins = new ArrayList<>();
+        for (final Plugin plugin : ProxyServer.getInstance().getPluginManager().getPlugins()) {
+            plugins.add(new PluginInfo(
+                true,
+                plugin.getDescription().name(),
+                plugin.getDescription().version(),
+                plugin.getDescription().mainClass(),
+                plugin.getDescription().authors()
+            ));
+        }
+
+        platformSpecific.add("plugins", GsonUtil.getGson().toJsonTree(plugins));
+        platformSpecific.add("servers", GsonUtil.getGson().toJsonTree(protocolDetectorService.detectedProtocolVersions()));
+        return platformSpecific;
     }
 
     @Override
