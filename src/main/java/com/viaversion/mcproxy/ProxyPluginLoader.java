@@ -18,6 +18,7 @@
 
 package com.viaversion.mcproxy;
 
+import com.viaversion.mcproxy.commands.ProxyCommandHandler;
 import com.viaversion.mcproxy.platform.ProxyPlatform;
 import com.viaversion.mcproxy.platform.ProxyPlatformLoader;
 import com.viaversion.mcproxy.platform.ProxyViaInjector;
@@ -25,7 +26,6 @@ import com.viaversion.mcproxy.service.ProtocolDetectorService;
 import com.viaversion.viabackwards.ViaBackwardsPlatformImpl;
 import com.viaversion.viarewind.ViaRewindPlatformImpl;
 import com.viaversion.viaversion.ViaManagerImpl;
-import com.viaversion.viaversion.commands.ViaCommandHandler;
 import dev.outfluencer.mcproxy.api.plugin.Plugin;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -38,7 +38,7 @@ public final class ProxyPluginLoader {
 
         final ProxyPluginConfig proxyConfig = new ProxyPluginConfig(pluginFolder.resolve("config.yml").toFile(), logger);
         final ProxyPlatform platform = new ProxyPlatform(pluginFolder.toFile(), logger, new ProtocolDetectorService(proxyConfig));
-        ViaManagerImpl.initAndLoad(platform, new ProxyViaInjector(), new ViaCommandHandler(false), new ProxyPlatformLoader(), () -> {
+        ViaManagerImpl.initAndLoad(platform, new ProxyViaInjector(), new ProxyCommandHandler(), new ProxyPlatformLoader(), () -> {
             proxyConfig.reload();
 
             if (hasClass("com.viaversion.viabackwards.api.ViaBackwardsPlatform")) {
