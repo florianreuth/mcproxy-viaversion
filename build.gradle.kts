@@ -19,7 +19,7 @@ val shade = configureShadedDependencies()
 dependencies {
     compileOnly("com.viaversion:viaversion-common:5.8.0")
     compileOnly("com.viaversion:viabackwards-common:5.8.0")
-    compileOnly("com.viaversion:viarewind-common:4.0.15")
+    compileOnly("com.viaversion:viarewind-common:4.1.1")
     compileOnly("com.github.Outfluencer:mcproxy:fec9c3328d")
     shade("net.lenni0451:Reflect:1.6.2")
 }
