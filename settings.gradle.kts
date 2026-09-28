@@ -1,17 +1,17 @@
 pluginManagement {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-        maven("https://maven.florianreuth.de/releases")
-    }
-
-    plugins {
-        id("de.florianreuth.baseproject") version "3.0.2"
-    }
+    includeBuild("build-logic")
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    id("base.settings")
+}
+
+dependencyResolutionManagement {
+    repositories {
+        maven("https://repo.viaversion.com")
+        maven("https://libraries.minecraft.net")
+        maven("https://jitpack.io/")
+    }
 }
 
 rootProject.name = "mcproxy-viaversion"

@@ -1,0 +1,10 @@
+[versions]
+viaversion = "5.8.0"
+
+[libraries]
+foojay-resolver-convention-plugin = { module = "org.gradle.toolchains.foojay-resolver-convention:org.gradle.toolchains.foojay-resolver-convention.gradle.plugin", version = "1.0.0" }
+viaversion-common = { module = "com.viaversion:viaversion-common", version.ref = "viaversion" }
+viabackwards-common = { module = "com.viaversion:viabackwards-common", version.ref = "viaversion" }
+viarewind-common = { module = "com.viaversion:viarewind-common", version = "4.1.1" }
+mcproxy = { module = "com.github.Outfluencer:mcproxy", version = "fec9c3328d" }
+reflect = { module = "net.lenni0451:Reflect", version = "1.6.2" }
