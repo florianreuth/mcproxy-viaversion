@@ -1,6 +1,4 @@
 plugins {
-    id("java")
-    id("base.java")
     id("configuration.shaded_dependencies")
 }
 
